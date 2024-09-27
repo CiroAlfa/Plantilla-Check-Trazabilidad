@@ -130,7 +130,7 @@ export default function Home() {
   return (
     <main className="container mx-auto p-4">
       <div className="mb-8" id="checklist-table">
-        <h2 className="text-2xl font-bold mb-4 text-center"style={{ color: 'blue' }}>Lista de Chequeo Módulo de Registro de Usuarios</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Lista de Chequeo Módulo de Registro de Usuarios</h2>
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-blue-600 text-white">
@@ -142,7 +142,7 @@ export default function Home() {
           </thead>
           <tbody>
             {checklist.map((item, index) => (
-              <tr key={item.id} className={index % 2 === 0 ? 'bg-blue-500' : 'bg-blue-800'}>
+              <tr key={item.id} className={index % 2 === 0 ? 'bg-blue-100' : 'bg-blue-50'}>
                 <td className="border p-2">{item.criteria}</td>
                 <td className="border p-2">
                   <Switch
@@ -192,7 +192,7 @@ export default function Home() {
       </div>
 
       <div className="mb-8" id="requirements-table">
-        <h2 className="text-2xl font-bold mb-4 text-center" style={{ color: 'blue' }}>Plantilla de trazabilidad de requisitos</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Plantilla de trazabilidad de requisitos</h2>
         <div className="overflow-x-auto" ref={tableRef}>
           <table className="w-full border-collapse">
             <thead>
@@ -211,7 +211,7 @@ export default function Home() {
             </thead>
             <tbody>
               {requirements.map((item, index) => (
-                <tr key={index} className={index % 2 === 0 ? 'bg-blue-500' : 'bg-blue-800'}>
+                <tr key={index} className={index % 2 === 0 ? 'bg-blue-100' : 'bg-blue-50'}>
                   <td className="border p-2 min-w-[100px]">
                     <input
                       type="text"

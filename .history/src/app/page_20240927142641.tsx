@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react'
 import { Switch } from '@headlessui/react'
 import html2canvas from 'html2canvas'
-import jsPDF from 'jspdf'
 
 interface ChecklistItem {
   id: number
@@ -109,28 +108,10 @@ export default function Home() {
     }
   }
 
-  const generatePDF = async (elementId: string, fileName: string) => {
-    const element = document.getElementById(elementId)
-    if (element) {
-      const canvas = await html2canvas(element, {
-        scale: 1,
-        useCORS: true,
-      })
-      const imgData = canvas.toDataURL('image/png')
-      const pdf = new jsPDF({
-        orientation: 'landscape',
-        unit: 'px',
-        format: [canvas.width, canvas.height]
-      })
-      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height)
-      pdf.save(fileName)
-    }
-  }
-
   return (
     <main className="container mx-auto p-4">
       <div className="mb-8" id="checklist-table">
-        <h2 className="text-2xl font-bold mb-4 text-center"style={{ color: 'blue' }}>Lista de Chequeo Módulo de Registro de Usuarios</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Lista de Chequeo Módulo de Registro de Usuarios</h2>
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-blue-600 text-white">
@@ -142,7 +123,7 @@ export default function Home() {
           </thead>
           <tbody>
             {checklist.map((item, index) => (
-              <tr key={item.id} className={index % 2 === 0 ? 'bg-blue-500' : 'bg-blue-800'}>
+              <tr key={item.id} className={index % 2 === 0 ? 'bg-blue-100' : 'bg-blue-50'}>
                 <td className="border p-2">{item.criteria}</td>
                 <td className="border p-2">
                   <Switch
@@ -175,24 +156,16 @@ export default function Home() {
             ))}
           </tbody>
         </table>
-        <div className="mt-4 flex justify-between">
-          <button
-            onClick={() => captureScreenshot('checklist-table', 'lista-de-chequeo.png')}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-          >
-            Capturar Tabla 1. Lista de chequeo
-          </button>
-          <button
-            onClick={() => generatePDF('checklist-table', 'lista-de-chequeo.pdf')}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
-          >
-            Descargar PDF Lista de chequeo
-          </button>
-        </div>
+        <button
+          onClick={() => captureScreenshot('checklist-table', 'lista-de-chequeo.png')}
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+        >
+          Capturar Tabla 1. Lista de chequeo
+        </button>
       </div>
 
       <div className="mb-8" id="requirements-table">
-        <h2 className="text-2xl font-bold mb-4 text-center" style={{ color: 'blue' }}>Plantilla de trazabilidad de requisitos</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Plantilla de trazabilidad de requisitos</h2>
         <div className="overflow-x-auto" ref={tableRef}>
           <table className="w-full border-collapse">
             <thead>
@@ -211,7 +184,7 @@ export default function Home() {
             </thead>
             <tbody>
               {requirements.map((item, index) => (
-                <tr key={index} className={index % 2 === 0 ? 'bg-blue-500' : 'bg-blue-800'}>
+                <tr key={index} className={index % 2 === 0 ? 'bg-blue-100' : 'bg-blue-50'}>
                   <td className="border p-2 min-w-[100px]">
                     <input
                       type="text"
@@ -325,12 +298,6 @@ export default function Home() {
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
           >
             Capturar Plantilla de trazabilidad de requisitos
-          </button>
-          <button
-            onClick={() => generatePDF('requirements-table', 'plantilla-trazabilidad-requisitos.pdf')}
-            className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition-colors"
-          >
-            Descargar PDF Plantilla de trazabilidad
           </button>
         </div>
       </div>

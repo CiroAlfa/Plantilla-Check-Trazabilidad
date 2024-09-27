@@ -142,7 +142,7 @@ export default function Home() {
           </thead>
           <tbody>
             {checklist.map((item, index) => (
-              <tr key={item.id} className={index % 2 === 0 ? 'bg-blue-500' : 'bg-blue-800'}>
+              <tr key={item.id} className={index % 2 === 0 ? 'bg-blue-100' : 'bg-blue-50'}>
                 <td className="border p-2">{item.criteria}</td>
                 <td className="border p-2">
                   <Switch
@@ -211,7 +211,7 @@ export default function Home() {
             </thead>
             <tbody>
               {requirements.map((item, index) => (
-                <tr key={index} className={index % 2 === 0 ? 'bg-blue-500' : 'bg-blue-800'}>
+                <tr key={index} className={index % 2 === 0 ? 'bg-blue-300' : 'bg-blue-800'}>
                   <td className="border p-2 min-w-[100px]">
                     <input
                       type="text"
